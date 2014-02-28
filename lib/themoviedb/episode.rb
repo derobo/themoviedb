@@ -33,5 +33,10 @@ module Tmdb
       search.fetch_response
     end
 
+    #Get the TV episode guest_stars credits by combination of season and episode number.
+    def self.guest_stars(id, season, episode, conditions={})
+      search = Tmdb::Search.new("/tv/#{self.endpoint_id + id.to_s}/season/#{self.endpoint_id + season.to_s}/#{self.endpoints[:singular]}/#{self.endpoint_id + episode.to_s}/credits")
+      search.fetch_response['guest_stars']
+    end
   end
 end
